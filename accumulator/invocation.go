@@ -79,7 +79,7 @@ func (inc *Invocation) MaybeCreateProxyTxn(status string, time time.Time) ([]byt
 	if err != nil {
 		return nil, err
 	}
-	if status != "success" {
+	if status != "success" && status != "spindown" {
 		txn, err = sjson.SetBytes(txn, "transaction.outcome", "failure")
 		if err != nil {
 			return nil, err
